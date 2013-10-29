@@ -1,6 +1,7 @@
 # MobileIntent
 
-TODO: Write a gem description
+link to start application.
+full of fuck'n shit.
 
 ## Installation
 
@@ -18,7 +19,25 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+### setup
+
+in config/initializer/mobile_intent.rb
+
+```ruby
+MobileIntent.setup do
+  register :myscheme, :android => 'com.example.myapp', :ios => 'myappname'
+end
+```
+
+### link_to
+
+in your view
+
+```ruby
+<%= link_to 'open by app', 'myscheme://url_param' %>
+```
+
+it create a tag to start application or redirect to store.
 
 ## Contributing
 
