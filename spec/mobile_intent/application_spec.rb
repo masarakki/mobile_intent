@@ -20,6 +20,15 @@ describe MobileIntent::Application do
     describe :ios_market_url do
       it { expect { subejct.ios_market_url }.to raise_error }
     end
+
+    describe :launch_url do
+      context :android_chrome do
+        it { expect(subject.launch_url(:hoge, 'Android Chrome')).to eq subject.android_intent_url(:hoge) }
+      end
+      context :old_android do
+        it { expect(subject.launch_url(:hoge, 'Android Unko')).to eq subject.intent_url(:hoge) }
+      end
+    end
   end
 
   context :with_ios do

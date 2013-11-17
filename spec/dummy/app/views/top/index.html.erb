@@ -1,2 +1,5 @@
 hello
-<%= launch_app "launch app", "myapp://120202" %>
+<%= launch_app "launch app with text", :nicobook, "bk120202" , :class => 'btn' %>
+<%= launch_app :nicobook, "bk1", :class => 'btn' do %>
+launch app with block
+<% end %>

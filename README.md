@@ -25,7 +25,7 @@ in config/initializer/mobile_intent.rb
 
 ```ruby
 MobileIntent.setup do
-  register :myscheme, :android => 'com.example.myapp', :ios => 'myappname'
+  register :myapp, :android => 'com.example.myapp', :ios => 'myappname'
 end
 ```
 
@@ -34,7 +34,12 @@ end
 in your view
 
 ```ruby
-<%= link_to 'open by app', 'myscheme://url_param' %>
+<%= launch_app 'open app', :myapp, 'mypage', :class => 'btn' %>
+
+<%= launch_app :myapp, 'mypage', :class => 'btn' do %>
+<i class="icon-app" />
+open app
+<% end %>
 ```
 
 it create a tag to start application or redirect to store.
