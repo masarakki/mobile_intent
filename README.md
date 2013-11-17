@@ -42,7 +42,7 @@ open app
 <% end %>
 ```
 
-it create a tag to start application or redirect to store.
+it create A-tag to start application with "myapp://mypage" or redirect to store.
 
 ## Contributing
 
