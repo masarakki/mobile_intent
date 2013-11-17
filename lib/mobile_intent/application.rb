@@ -26,6 +26,10 @@ module MobileIntent
       "itms://itunes.com/apps/#{@ios}"
     end
 
+    def market_url(platform)
+      send("#{platform}_market_url")
+    end
+
     def intent_url(url)
       "#{name}://#{url}"
     end

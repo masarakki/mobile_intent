@@ -1,0 +1,31 @@
+class MobileIntent
+  @detect: (ua) ->
+    if ua.match /Android/
+      "android"
+    else if ua.match /iPhone/ || ua.match /iPad/
+      "ios"
+
+<% MobileIntent.config.apps.each_pair do |name, app| %>
+  @<%= name %> = {
+    <% [:ios, :android].map do |platform| %>
+      <%= "#{platform}: '#{app.market_url(platform)}'" if app.send("#{platform}?") %>
+    <% end %>
+  }
+<% end %>
+
+
+$(document).ready ->
+  $(".launch_app").on 'click', (e) ->
+    target = $(e.target)
+    app = target.attr "data-app-scheme"
+    platform = MobileIntent.detect window.navigator.userAgent
+
+    if market_url = MobileIntent[app][platform]
+      e.stopPropagation()
+      e.preventDefault()
+      setTimeout ->
+        window.location = market_url
+      , 500
+      window.location = target.attr "href"
+      false
+
