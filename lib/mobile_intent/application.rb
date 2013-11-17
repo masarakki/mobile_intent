@@ -29,5 +29,13 @@ module MobileIntent
     def intent_url(url)
       "#{name}://#{url}"
     end
+
+    def launch_url(url, user_agent)
+      if user_agent =~ /Chrome/ && user_agent =~ /Android/
+        android_intent_url(url)
+      else
+        intent_url(url)
+      end
+    end
   end
 end
