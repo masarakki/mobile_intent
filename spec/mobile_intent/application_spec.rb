@@ -3,7 +3,7 @@ require 'spec_helper'
 describe MobileIntent::Application do
   let(:name) { :app_name }
   let(:android) { 'com.example.myapp' }
-  let(:ios) { 'myappname' }
+  let(:ios) { 1212121 }
   subject { application }
 
   context :with_android do
@@ -38,7 +38,7 @@ describe MobileIntent::Application do
     describe :intent_url do
       it { expect(subject.intent_url(:hoge)).to eq "#{name}://hoge" }
     end
-    its(:ios_market_url) { should eq "itms://itunes.com/apps/#{ios}" }
+    its(:ios_market_url) { should eq "http://itunes.apple.com/app/id#{ios}" }
     describe :android_market_url do
       it { expect { subject.android_market_url }.to raise_error }
     end
