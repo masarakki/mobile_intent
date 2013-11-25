@@ -9,7 +9,7 @@ describe MobileIntent do
     it 'register app' do
       expect {
         MobileIntent.setup do
-          register :my_app, :android => 'com.example.myapp', :ios => 'myapp_name'
+          register :my_app, :android => 'com.example.myapp', :ios => 123456
         end
       }.to change { MobileIntent.config.has? :my_app }.from(false).to(true)
     end

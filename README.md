@@ -25,9 +25,12 @@ in config/initializer/mobile_intent.rb
 
 ```ruby
 MobileIntent.setup do
-  register :myapp, :android => 'com.example.myapp', :ios => 'myappname'
+  register :myapp, :android => 'com.example.myapp', :ios => 123456
 end
 ```
+
+- android: package name
+- ios: application id
 
 ### link_to
 

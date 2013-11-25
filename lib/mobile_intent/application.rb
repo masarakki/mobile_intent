@@ -23,7 +23,7 @@ module MobileIntent
 
     def ios_market_url
       raise unless ios?
-      "itms://itunes.com/apps/#{@ios}"
+      "http://itunes.apple.com/app/id#{@ios}"
     end
 
     def market_url(platform)
