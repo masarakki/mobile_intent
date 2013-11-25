@@ -1,9 +1,8 @@
 class MobileIntent
   @detect: (ua) ->
-    if ua.match /Android/
-      "android"
-    else if ua.match /iPhone/ || ua.match /iPad/
-      "ios"
+    switch
+      when ua.match /Android/ then "android"
+      when ua.match /i(Phone|Pad)/ then "ios"
 
 <% MobileIntent.config.apps.each_pair do |name, app| %>
   @<%= name %> = {
@@ -19,13 +18,18 @@ $(document).ready ->
     target = $(e.target)
     app = target.attr "data-app-scheme"
     platform = MobileIntent.detect window.navigator.userAgent
-
     if market_url = MobileIntent[app][platform]
-      e.stopPropagation()
-      e.preventDefault()
+      iframe = $("<iframe>").attr("id", "launch_app").css {
+        visibility: "hidden",
+        width: '0px',
+        height: '0px'
+      }
+      iframe.attr "src", target.attr("href")
+      $("body").append(iframe)
+      start_at = new Date().getTime()
       setTimeout ->
-        window.location = market_url
+        now = new Date().getTime()
+        $("body").remove("#launch_app")
+        window.location = market_url unless now - start_at > 600
       , 500
-      window.location = target.attr "href"
-      false
 
