@@ -18,7 +18,7 @@ module MobileIntent
 
     def android_market_url
       raise unless android?
-      "market://details?id=#{@android}"
+      "https://play.google.com/store/apps/details?id=#{@android}"
     end
 
     def ios_market_url

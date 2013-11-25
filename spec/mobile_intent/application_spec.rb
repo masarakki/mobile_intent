@@ -13,7 +13,7 @@ describe MobileIntent::Application do
     describe :intent_url do
       it { expect(subject.intent_url(:hoge)).to eq "#{name}://hoge" }
     end
-    its(:android_market_url) { should eq "market://details?id=#{android}" }
+    its(:android_market_url) { should eq "https://play.google.com/store/apps/details?id=#{android}" }
     describe :android_intent_url do
       it { expect(subject.android_intent_url(:hoge)).to eq "intent://hoge#Intent;scheme=#{name};package=#{android};end" }
     end
